@@ -1,11 +1,9 @@
 package hu.jonat.darts_scoreboard;
 
-import android.app.ListFragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,5 +35,13 @@ public class ScoreFragment extends Fragment{
     @Override
     public void onStart() {
         super.onStart();
+
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+
+
     }
 }
