@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 /**
  * Created by jonat on 2015. 09. 30..
@@ -14,6 +15,8 @@ import android.view.ViewGroup;
 public class StatisticFragment extends Fragment {
 
     public static final String TAG = "StatisticFragment";
+
+    String s;
 
     @Override
     public void onAttach(Context context) {
@@ -29,11 +32,22 @@ public class StatisticFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = View.inflate(getActivity(), R.layout.statistic_fragment, null);
+
+        Toast.makeText(getActivity(),s,Toast.LENGTH_LONG).show();
         return v;
     }
 
     @Override
     public void onStart() {
         super.onStart();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+    }
+
+    public void updateText(String text){
+        s = text;
     }
 }
