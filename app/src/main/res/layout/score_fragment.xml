@@ -69,7 +69,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true" />
+            android:layout_centerVertical="true"
+            android:onClick="onClickNumber"/>
 
         <Button
             android:id="@+id/btnTwo"
@@ -77,7 +78,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@id/btnFive"
-            android:layout_alignLeft="@id/btnFive"/>
+            android:layout_alignLeft="@id/btnFive"
+            android:onClick="onClickNumber"/>
 
         <Button
             android:id="@+id/btnEight"
@@ -85,7 +87,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/btnFive"
-            android:layout_alignLeft="@id/btnFive"/>
+            android:layout_alignLeft="@id/btnFive"
+            android:onClick="onClickNumber"/>
 
         <Button
             android:id="@+id/btnFour"
@@ -93,7 +96,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toLeftOf="@id/btnFive"
-            android:layout_alignTop="@id/btnFive"/>
+            android:layout_alignTop="@id/btnFive"
+            android:onClick="onClickNumber"/>
 
         <Button
             android:id="@+id/btnSix"
@@ -101,7 +105,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/btnFive"
-            android:layout_alignTop="@id/btnFive"/>
+            android:layout_alignTop="@id/btnFive"
+            android:onClick="onClickNumber"/>
 
         <Button
             android:id="@+id/btnOne"
@@ -110,7 +115,7 @@
             android:layout_height="wrap_content"
             android:layout_toLeftOf="@id/btnTwo"
             android:layout_alignTop="@id/btnTwo"
-            android:onClick="onClick"/>
+            android:onClick="onClickNumber"/>
 
         <Button
             android:id="@+id/btnThree"
@@ -118,7 +123,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/btnTwo"
-            android:layout_alignTop="@id/btnTwo"/>
+            android:layout_alignTop="@id/btnTwo"
+            android:onClick="onClickNumber"/>
 
         <Button
             android:id="@+id/btnSeven"
@@ -126,7 +132,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toLeftOf="@id/btnEight"
-            android:layout_alignTop="@id/btnEight"/>
+            android:layout_alignTop="@id/btnEight"
+            android:onClick="onClickNumber"/>
 
         <Button
             android:id="@+id/btnNine"
@@ -134,7 +141,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/btnEight"
-            android:layout_alignTop="@id/btnEight"/>
+            android:layout_alignTop="@id/btnEight"
+            android:onClick="onClickNumber"/>
 
         <Button
             android:id="@+id/btnNull"
@@ -142,7 +150,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/btnEight"
-            android:layout_alignLeft="@id/btnFive"/>
+            android:layout_alignLeft="@id/btnFive"
+            android:onClick="onClickNumber"/>
 
         <Button
             android:id="@+id/btnClear"
@@ -150,7 +159,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toLeftOf="@id/btnNull"
-            android:layout_alignTop="@id/btnNull"/>
+            android:layout_alignTop="@id/btnNull"
+            android:onClick="onClickClear"/>
 
         <Button
             android:id="@+id/btnOk"

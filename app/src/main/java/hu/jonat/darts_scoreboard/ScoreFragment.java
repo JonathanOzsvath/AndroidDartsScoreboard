@@ -1,6 +1,8 @@
 package hu.jonat.darts_scoreboard;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -84,7 +86,6 @@ public class ScoreFragment extends Fragment {
     }
 
     public void onClickOk(View v) {
-
         if (v.getId() == R.id.btnOk) {
 
             if (countOk == 0 && editText.getText() != null) {
@@ -101,38 +102,161 @@ public class ScoreFragment extends Fragment {
                 editText.setInputType(InputType.TYPE_CLASS_NUMBER);
             }
             if ((countOk % 2) == 0 && countOk != 0 && editText.getText() != null) {
-                int score = player1.getScore() - Integer.parseInt(editText.getText().toString());
-                player1.setScore(score);
-                editText.getText().clear();
-                editText.setHint("A második játékos dob!");
-                playerOneScore.setText(String.valueOf(player1.getScore()));
+                if (Integer.parseInt(editText.getText().toString()) > 180) {
+                    showAllertMessage("3 nyílból nem lehet " + editText.getText().toString() + " dobni");
+                    editText.getText().clear();
+                    countOk--;
+                } else {
+                    if (Integer.parseInt(editText.getText().toString()) > player1.getScore()) {
+                        showAllertMessage("Bust! Kevesebbje lenne 0-nál");
+                        editText.getText().clear();
+                        countOk--;
+                    } else {
+                        int score = player1.getScore() - Integer.parseInt(editText.getText().toString());
+                        player1.setScore(score);
+                        editText.getText().clear();
+                        editText.setHint("A második játékos dob!");
+                        playerOneScore.setText(String.valueOf(player1.getScore()));
+                    }
+                }
             }
-            if ((countOk % 2) == 1 && countOk != 1 && editText.getText() != null) {
-                int score = player2.getScore() - Integer.parseInt(editText.getText().toString());
-                player2.setScore(score);
-                editText.getText().clear();
-                editText.setHint("Az elso játékos dob!");
-                playerTwoScore.setText(String.valueOf(player2.getScore()));
+            if (((countOk % 2) == 1) && countOk != 1 && editText.getText() != null) {
+                if ((Integer.parseInt(editText.getText().toString())) > 180) {
+                    showAllertMessage("3 nyílból nem lehet " + editText.getText().toString() + " dobni");
+                    editText.getText().clear();
+                    countOk--;
+                } else {
+                    if (Integer.parseInt(editText.getText().toString()) > player2.getScore()) {
+                        showAllertMessage("Bust! Kevesebbje lenne 0-nál");
+                        editText.getText().clear();
+                        countOk--;
+                    } else {
+                        int score = player2.getScore() - Integer.parseInt(editText.getText().toString());
+                        player2.setScore(score);
+                        editText.getText().clear();
+                        editText.setHint("Az elso játékos dob!");
+                        playerTwoScore.setText(String.valueOf(player2.getScore()));
+                    }
+                }
             }
         }
         countOk++;
+        endLeg();
     }
 
-    protected void update(){
+    public void onClickNumber(View v) {
+        switch (v.getId()) {
+            case R.id.btnNull:
+                editText.append("0");
+                break;
+            case R.id.btnOne:
+                editText.append("1");
+                break;
+            case R.id.btnTwo:
+                editText.append("2");
+                break;
+            case R.id.btnThree:
+                editText.append("3");
+                break;
+            case R.id.btnFour:
+                editText.append("4");
+                break;
+            case R.id.btnFive:
+                editText.append("5");
+                break;
+            case R.id.btnSix:
+                editText.append("6");
+                break;
+            case R.id.btnSeven:
+                editText.append("7");
+                break;
+            case R.id.btnEight:
+                editText.append("8");
+                break;
+            case R.id.btnNine:
+                editText.append("9");
+                break;
+        }
+    }
+
+    public void onClickClear(View v) {
+        editText.getText().clear();
+    }
+
+    protected void endLeg() {
+        if (player1.getScore() == 0) {
+            showAllertMessage(player1.getName() + "nyerte a leget!");
+            player1.setLegs(player1.getLegs() + 1);
+
+            showAllertMessage("Legs: " + player1.getName() + "-" + player2.getName() + ":" +
+                    String.valueOf(player1.getLegs()) + "-" + String.valueOf(player2.getLegs()));
+
+            if (((player1.getLegs() + player2.getLegs()) % 2) == 0) {
+                countOk = 2;
+            } else {
+                countOk = 3;
+            }
+            start();
+        } else if (player2.getScore() == 0) {
+            showAllertMessage(player2.getName() + "nyerte a leget!");
+            player2.setLegs(player2.getLegs() + 1);
+
+            showAllertMessage("Legs: " + player1.getName() + "-" + player2.getName() + ":" +
+                    String.valueOf(player1.getLegs()) + "-" + String.valueOf(player2.getLegs()));
+
+            if (((player1.getLegs() + player2.getLegs()) % 2) == 0) {
+                countOk = 2;
+            } else {
+                countOk = 3;
+            }
+            start();
+        }
+        endSet();
+    }
+
+    protected void endSet() {
+        if (player1.getLegs() == 3) {
+            showAllertMessage(player1.getName() + "nyerte a settet!");
+            player1.setSets(player1.getSets() + 1);
+
+            player1.setLegs(0);
+            player2.setLegs(0);
+
+            showAllertMessage("Sets: " + player1.getName() + "-" + player2.getName() + ":" +
+                    String.valueOf(player1.getSets()) + "-" + String.valueOf(player2.getSets()));
+        } else if (player2.getLegs() == 3) {
+            showAllertMessage(player2.getName() + "nyerte a settet!");
+            player2.setSets(player2.getSets() + 1);
+
+            player1.setLegs(0);
+            player2.setLegs(0);
+
+            showAllertMessage("Sets: " + player1.getName() + "-" + player2.getName() + ":" +
+                    String.valueOf(player1.getSets()) + "-" + String.valueOf(player2.getSets()));
+        }
+    }
+
+    protected void start() {
+        player1.setScore(501);
+        player2.setScore(501);
+        update();
+    }
+
+    protected void update() {
         playerOneName.setText(player1.getName().toString());
         playerTwoName.setText(player2.getName().toString());
         playerOneScore.setText(String.valueOf(player1.getScore()));
         playerTwoScore.setText(String.valueOf(player2.getScore()));
-        if (countOk == 1){
+        if (countOk == 1) {
             editText.setHint("Az első játékos dob!");
         }
-        if ((countOk % 2) == 0 && countOk != 0 ){
+        if ((countOk % 2) == 0 && countOk != 0) {
             editText.setHint("Az elso játékos dob!");
         }
-        if ((countOk % 2) == 1 && countOk != 1){
+        if ((countOk % 2) == 1 && countOk != 1) {
             editText.setHint("A második játékos dob!");
         }
-        if (countOk > 1){
+        if (countOk > 1) {
             editText.setInputType(InputType.TYPE_CLASS_NUMBER);
         }
     }
@@ -161,5 +285,16 @@ public class ScoreFragment extends Fragment {
         player1 = playerOne;
         player2 = playerTwo;
         this.countOk = countOk;
+    }
+
+    private void showAllertMessage(final String aMessage) {
+        final AlertDialog.Builder alertbox = new AlertDialog.Builder(getActivity());
+        alertbox.setMessage(aMessage);
+        alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+        alertbox.show();
     }
 }

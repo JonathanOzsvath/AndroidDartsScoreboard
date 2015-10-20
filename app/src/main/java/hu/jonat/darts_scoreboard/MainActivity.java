@@ -76,6 +76,14 @@ public class MainActivity extends FragmentActivity
         scoreFragment.onClickOk(v);
     }
 
+    public void onClickNumber(View v){
+        scoreFragment.onClickNumber(v);
+    }
+
+    public void onClickClear(View v){
+        scoreFragment.onClickClear(v);
+    }
+
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
