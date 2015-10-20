@@ -34,7 +34,7 @@
                     android:layout_marginBottom="0dp" />
 
                 <TextView
-                    android:id="@+id/playerTwoeName"
+                    android:id="@+id/playerTwoName"
                     android:text="Player2"
                     android:textStyle="bold"
                     android:textSize="30dp"

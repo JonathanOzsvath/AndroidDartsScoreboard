@@ -4,11 +4,16 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 
-public class MainActivity extends FragmentActivity implements ScoreFragment.Text{
+public class MainActivity extends FragmentActivity
+        implements ScoreFragment.SendPlayers,ScoreFragment.ActivityToFragment{
 
-    String actTag;
+    String actTag,s;
+    public Player player1;
+    public Player player2;
+    int countOk;
     ScoreFragment scoreFragment;
     StatisticFragment statisticFragment;
+    ScoreFragment.ActivityToFragment activityToFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,11 +24,21 @@ public class MainActivity extends FragmentActivity implements ScoreFragment.Text
         android.support.v4.app.FragmentTransaction ft = fm.beginTransaction();
         if (savedInstanceState != null) {
             actTag = savedInstanceState.getString("TAG");
+            player1 = savedInstanceState.getParcelable("playerOne");
+            player2 = savedInstanceState.getParcelable("playerTwo");
+            countOk = savedInstanceState.getInt("countOk");
         }
         if (actTag == null || actTag == ScoreFragment.TAG) {
             scoreFragment = new ScoreFragment();
             ft.replace(R.id.layoutFragment, scoreFragment, ScoreFragment.TAG);
             actTag = ScoreFragment.TAG;
+            try {
+                activityToFragment = this;
+            } catch (ClassCastException e) {
+                throw new ClassCastException(this.toString()
+                        + " must implement TextClicked");
+            }
+            activityToFragment.sendToFragment(player1,player2,countOk);
         } else {
             statisticFragment = new StatisticFragment();
             ft.replace(R.id.layoutFragment, statisticFragment, StatisticFragment.TAG);
@@ -38,12 +53,10 @@ public class MainActivity extends FragmentActivity implements ScoreFragment.Text
         if (v.getId() == R.id.Statistic) {
             ft.setCustomAnimations(android.R.anim.slide_in_left,
                     android.R.anim.slide_out_right);
-
             if (statisticFragment == null) {
                 statisticFragment = new StatisticFragment();
             }
             ft.replace(R.id.layoutFragment, statisticFragment, StatisticFragment.TAG);
-            //ft.addToBackStack(StatisticFragment.TAG);
             ft.commit();
             actTag = StatisticFragment.TAG;
         } else if (v.getId() == R.id.Score) {
@@ -54,7 +67,6 @@ public class MainActivity extends FragmentActivity implements ScoreFragment.Text
                 scoreFragment = new ScoreFragment();
             }
             ft.replace(R.id.layoutFragment, scoreFragment, ScoreFragment.TAG);
-            //ft.addToBackStack(ScoreF
             ft.commit();
             actTag = ScoreFragment.TAG;
         }
@@ -68,14 +80,31 @@ public class MainActivity extends FragmentActivity implements ScoreFragment.Text
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putString("TAG", actTag);
+        outState.putInt("countOk", countOk);
+        outState.putParcelable("playerOne", player1);
+        outState.putParcelable("playerTwo", player2);
     }
 
+    // Adatok küldése a StatisticFragmentnek
     @Override
-    public void sendText(String text) {
+    public void sendPlayer(Player playerOne, Player playerTwo, int countOk) {
         if (statisticFragment == null) {
             statisticFragment = new StatisticFragment();
         }
 
-        statisticFragment.updateText(text);
+        player1 = playerOne;
+        player2 = playerTwo;
+        this.countOk = countOk;
+        statisticFragment.getPlayers(playerOne,playerTwo,countOk);
+    }
+
+    // Adatok küldése a ScoreFragmentnek
+    @Override
+    public void sendToFragment(Player playerOne, Player playerTwo, int countOk) {
+        if (scoreFragment == null){
+            scoreFragment = new ScoreFragment();
+        }
+
+        scoreFragment.getMessage(player1,player2,countOk);
     }
 }

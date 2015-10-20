@@ -16,6 +16,7 @@ import android.widget.TextView;
  */
 public class ScoreFragment extends Fragment {
 
+    //????
     public ScoreFragment() {
         setArguments(new Bundle());
     }
@@ -23,18 +24,18 @@ public class ScoreFragment extends Fragment {
     public static final String TAG = "ScoreFragment";
 
     public Player player1;
-    Player player2;
-    String actTag;
+    public Player player2;
+    String actTag, s;
     int countOk;
-    //EditText editText;
+    EditText editText;
     TextView playerOneName, playerTwoName, playerOneScore, playerTwoScore;
-    Text mCallback;
+    SendPlayers mCallback;
 
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         try {
-            mCallback = (Text) activity;
+            mCallback = (SendPlayers) activity;
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString()
                     + " must implement TextClicked");
@@ -51,19 +52,27 @@ public class ScoreFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = View.inflate(getActivity(), R.layout.score_fragment, null);
 
-        countOk = 0;
-
-        if (player1 == null) {
-            player1 = new Player("player1");
+        if (savedInstanceState != null) {
+            actTag = savedInstanceState.getString("TAG");
+            player1 = savedInstanceState.getParcelable("playerOne");
+            player2 = savedInstanceState.getParcelable("playerTwo");
+            countOk = savedInstanceState.getInt("countOk");
         }
 
-        //editText = (EditText) v.findViewById(R.id.etScore);
+        if (countOk == 0) {
+            player1 = new Player("player1");
+            player2 = new Player("player2");
+        }
+
+        editText = (EditText) v.findViewById(R.id.etScore);
         playerOneName = (TextView) v.findViewById(R.id.playerOneName);
-        playerTwoName = (TextView) v.findViewById(R.id.playerTwoeName);
+        playerTwoName = (TextView) v.findViewById(R.id.playerTwoName);
         playerOneScore = (TextView) v.findViewById(R.id.playerOneScore);
         playerTwoScore = (TextView) v.findViewById(R.id.playerTwoScore);
 
-        //Toast.makeText(getActivity(),s, Toast.LENGTH_LONG).show();
+        //Toast.makeText(getActivity(), player1.getName().toString(), Toast.LENGTH_LONG).show();
+
+        update();
 
         return v;
     }
@@ -71,13 +80,10 @@ public class ScoreFragment extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
-        String s = "nyer";
-        mCallback.sendText(s);
+        mCallback.sendPlayer(player1, player2, countOk);
     }
 
     public void onClickOk(View v) {
-
-        EditText editText = (EditText) getView().findViewById(R.id.etScore);
 
         if (v.getId() == R.id.btnOk) {
 
@@ -112,16 +118,48 @@ public class ScoreFragment extends Fragment {
         countOk++;
     }
 
+    protected void update(){
+        playerOneName.setText(player1.getName().toString());
+        playerTwoName.setText(player2.getName().toString());
+        playerOneScore.setText(String.valueOf(player1.getScore()));
+        playerTwoScore.setText(String.valueOf(player2.getScore()));
+        if (countOk == 1){
+            editText.setHint("Az első játékos dob!");
+        }
+        if ((countOk % 2) == 0 && countOk != 0 ){
+            editText.setHint("Az elso játékos dob!");
+        }
+        if ((countOk % 2) == 1 && countOk != 1){
+            editText.setHint("A második játékos dob!");
+        }
+        if (countOk > 1){
+            editText.setInputType(InputType.TYPE_CLASS_NUMBER);
+        }
+    }
+
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putString("TAG", actTag);
+        outState.putString("TAG", TAG);
         outState.putInt("countOk", countOk);
         outState.putParcelable("playerOne", player1);
         outState.putParcelable("playerTwo", player2);
     }
 
-    public interface Text {
-        public void sendText(String text);
+    // Adatok küldése a StatisticFragmentnek
+    public interface SendPlayers {
+        public void sendPlayer(Player playerOne, Player playerTwo, int countOk);
+    }
+
+    // Adtatok megkapása a MainActivity-ből
+    public interface ActivityToFragment {
+        public void sendToFragment(Player playerOne, Player playerTwo, int countOk);
+    }
+
+    // Adtatok megkapása a MainActivity-ből
+    public void getMessage(Player playerOne, Player playerTwo, int countOk) {
+        player1 = playerOne;
+        player2 = playerTwo;
+        this.countOk = countOk;
     }
 }
