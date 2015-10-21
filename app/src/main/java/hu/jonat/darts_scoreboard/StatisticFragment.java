@@ -1,5 +1,6 @@
 package hu.jonat.darts_scoreboard;
 
+import android.app.Activity;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
@@ -23,6 +24,19 @@ public class StatisticFragment extends ListFragment {
     public Player player1, player2;
     String actTag;
     int countOk;
+
+    getPlayersFromActivity getPlayersFromActivity;
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        try {
+            getPlayersFromActivity = (getPlayersFromActivity) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " must implement getPlayerFromActivity");
+        }
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -51,7 +65,8 @@ public class StatisticFragment extends ListFragment {
 
         Resources resources = getResources();
 
-        mItems.add(new ListViewItem("Név", player1.getName(), player2.getName()));
+        mItems.add(new ListViewItem("", player1.getName(), player2.getName()));
+        mItems.add(new ListViewItem("Score",String.valueOf(player1.getScore()),String.valueOf(player2.getScore())));
         mItems.add(new ListViewItem("Sets",String.valueOf(player1.getSets()),String.valueOf(player2.getSets())));
         mItems.add(new ListViewItem("Legs",String.valueOf(player1.getLegs()),String.valueOf(player2.getLegs())));
 
@@ -71,6 +86,7 @@ public class StatisticFragment extends ListFragment {
     @Override
     public void onPause() {
         super.onPause();
+        getPlayersFromActivity.getPlayerFromActivity(player1,player2,countOk);
     }
 
     // Adtatok megkapása a ScoreFragment-ből és MainActivity-ből

@@ -131,6 +131,14 @@ public class MainActivity extends FragmentActivity
             statisticFragment = new StatisticFragment();
         }
 
+        if (scoreFragment == null){
+            scoreFragment = new ScoreFragment();
+        }
+
+        player1 = playerOne;
+        player2 = playerTwo;
+        this.countOk = countOk;
         statisticFragment.getPlayers(player1, player2, countOk);
+        scoreFragment.getMessage(player1,player2,countOk);
     }
 }
