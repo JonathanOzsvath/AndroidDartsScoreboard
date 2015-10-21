@@ -69,6 +69,12 @@ public class StatisticFragment extends ListFragment {
         mItems.add(new ListViewItem("Score",String.valueOf(player1.getScore()),String.valueOf(player2.getScore())));
         mItems.add(new ListViewItem("Sets",String.valueOf(player1.getSets()),String.valueOf(player2.getSets())));
         mItems.add(new ListViewItem("Legs",String.valueOf(player1.getLegs()),String.valueOf(player2.getLegs())));
+        mItems.add(new ListViewItem("Darts",String.valueOf(player1.getDarts()),String.valueOf(player2.getDarts())));
+        mItems.add(new ListViewItem("Best leg",String.valueOf(player1.getBestleg()),String.valueOf(player2.getBestleg())));
+        mItems.add(new ListViewItem("Previous leg",String.valueOf(player1.getPreviousLeg()),String.valueOf(player2.getPreviousLeg())));
+        mItems.add(new ListViewItem("Current leg",String.valueOf(player1.getCurrentLeg()),String.valueOf(player2.getCurrentLeg())));
+        mItems.add(new ListViewItem("Current set",String.valueOf(player1.getCurrentSet()),String.valueOf(player2.getCurrentSet())));
+        mItems.add(new ListViewItem("Match",String.valueOf(player1.getMatch()),String.valueOf(player2.getMatch())));
 
         setListAdapter(new ListViewAdapter(getActivity(), mItems));
 

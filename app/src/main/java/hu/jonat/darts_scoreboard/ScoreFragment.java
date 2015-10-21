@@ -117,6 +117,8 @@ public class ScoreFragment extends Fragment {
                         editText.getText().clear();
                         editText.setHint("A második játékos dob!");
                         playerOneScore.setText(String.valueOf(player1.getScore()));
+                        player1.setDarts(player1.getDarts() + 3);
+                        player1.setCurrentLeg((double)(501 - player1.getScore()) / (player1.getDarts() / 3));
                     }
                 }
             }
@@ -136,6 +138,8 @@ public class ScoreFragment extends Fragment {
                         editText.getText().clear();
                         editText.setHint("Az elso játékos dob!");
                         playerTwoScore.setText(String.valueOf(player2.getScore()));
+                        player2.setDarts(player2.getDarts() + 3);
+                        player2.setCurrentLeg((double)(501 - player2.getScore()) / (player2.getDarts() / 3));
                     }
                 }
             }
@@ -237,9 +241,27 @@ public class ScoreFragment extends Fragment {
     }
 
     protected void start() {
+        player1.setPreviousLeg(player1.getCurrentLeg());
+        player2.setPreviousLeg(player2.getCurrentLeg());
+
+        if (player1.getBestleg() < player1.getCurrentLeg()){
+            player1.setBestleg(player1.getCurrentLeg());
+        }
+        if (player2.getBestleg() < player2.getCurrentLeg()){
+            player2.setBestleg(player2.getCurrentLeg());
+        }
+
         player1.setScore(501);
         player2.setScore(501);
+        player1.setDarts(0);
+        player2.setDarts(0);
+        player1.setCurrentLeg(0);
+        player2.setCurrentLeg(0);
         update();
+    }
+
+    protected void setStatics() {
+
     }
 
     protected void update() {

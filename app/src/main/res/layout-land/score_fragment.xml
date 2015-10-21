@@ -3,7 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#0D17D5">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -14,8 +15,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
-            android:hint="Adja meg az első játékos nevét" />
+            android:hint="Adja meg az első játékos nevét"
+            android:textColor="@android:color/white"
+            android:textColorHint="@android:color/white"
+            android:textSize="25sp"/>
 
         <TableLayout
             android:layout_width="wrap_content"
@@ -29,36 +32,48 @@
                     android:text="Player1"
                     android:textSize="30dp"
                     android:textStyle="bold"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="50dp"
-                    android:layout_marginBottom="0dp" />
+                    android:textColor="@android:color/white"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:paddingTop="0dp"
+                    android:padding="15dp"/>
 
                 <TextView
                     android:id="@+id/playerTwoName"
                     android:text="Player2"
                     android:textStyle="bold"
                     android:textSize="30dp"
-                    android:layout_marginLeft="50dp"
-                    android:layout_marginTop="10dp" />
+                    android:textColor="@android:color/white"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:padding="15dp"/>
             </TableRow>
 
             <TableRow>
                 <TextView
                     android:id="@+id/playerOneScore"
                     android:text="501"
-                    android:layout_marginLeft="50dp"
-                    android:layout_marginTop="10dp"
                     android:textSize="20dp"
                     android:textIsSelectable="false"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:textColor="@android:color/white"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    />
 
                 <TextView
                     android:id="@+id/playerTwoScore"
                     android:text="501"
-                    android:layout_marginLeft="75dp"
-                    android:layout_marginTop="10dp"
                     android:textStyle="bold"
-                    android:textSize="20dp" />
+                    android:textSize="20dp"
+                    android:textColor="@android:color/white"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    />
             </TableRow>
         </TableLayout>
     </RelativeLayout>
@@ -73,11 +88,13 @@
             android:text="5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="187dp"
+            android:layout_marginStart="187dp"
+            android:background="@drawable/number_selector"
             android:layout_centerVertical="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginLeft="223dp"
-            android:layout_marginStart="223dp" />
+            android:onClick="onClickNumber"/>
 
         <Button
             android:id="@+id/btnTwo"
@@ -85,7 +102,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@id/btnFive"
-            android:layout_alignLeft="@id/btnFive"/>
+            android:layout_alignLeft="@id/btnFive"
+            android:background="@drawable/number_selector"
+            android:onClick="onClickNumber"/>
 
         <Button
             android:id="@+id/btnEight"
@@ -93,7 +112,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/btnFive"
-            android:layout_alignLeft="@id/btnFive"/>
+            android:layout_alignLeft="@id/btnFive"
+            android:background="@drawable/number_selector"
+            android:onClick="onClickNumber"/>
 
         <Button
             android:id="@+id/btnFour"
@@ -101,7 +122,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignTop="@id/btnFive"
-            android:layout_alignLeft="@id/btnOne"/>
+            android:layout_alignLeft="@id/btnOne"
+            android:background="@drawable/number_selector"
+            android:onClick="onClickNumber"/>
 
         <Button
             android:id="@+id/btnSix"
@@ -109,7 +132,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/btnFive"
-            android:layout_alignTop="@id/btnFive"/>
+            android:layout_alignTop="@id/btnFive"
+            android:background="@drawable/number_selector"
+            android:onClick="onClickNumber"/>
 
         <Button
             android:id="@+id/btnOne"
@@ -117,7 +142,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toLeftOf="@id/btnTwo"
-            android:layout_alignTop="@id/btnTwo"/>
+            android:layout_alignTop="@id/btnTwo"
+            android:background="@drawable/number_selector"
+            android:onClick="onClickNumber"/>
 
         <Button
             android:id="@+id/btnThree"
@@ -125,7 +152,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/btnTwo"
-            android:layout_alignTop="@id/btnTwo"/>
+            android:layout_alignTop="@id/btnTwo"
+            android:background="@drawable/number_selector"
+            android:onClick="onClickNumber"/>
 
         <Button
             android:id="@+id/btnSeven"
@@ -133,7 +162,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toLeftOf="@id/btnEight"
-            android:layout_alignTop="@id/btnEight"/>
+            android:layout_alignTop="@id/btnEight"
+            android:background="@drawable/number_selector"
+            android:onClick="onClickNumber"/>
 
         <Button
             android:id="@+id/btnNine"
@@ -141,7 +172,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/btnEight"
-            android:layout_alignTop="@id/btnEight"/>
+            android:layout_alignTop="@id/btnEight"
+            android:background="@drawable/number_selector"
+            android:onClick="onClickNumber"/>
 
         <Button
             android:id="@+id/btnNull"
@@ -150,7 +183,9 @@
             android:layout_height="wrap_content"
             android:layout_above="@+id/btnSix"
             android:layout_toRightOf="@+id/btnSix"
-            android:layout_toEndOf="@+id/btnSix" />
+            android:layout_toEndOf="@+id/btnSix"
+            android:background="@drawable/number_selector"
+            android:onClick="onClickNumber"/>
 
         <Button
             android:id="@+id/btnClear"
@@ -159,7 +194,9 @@
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/btnSix"
             android:layout_toRightOf="@+id/btnSix"
-            android:layout_toEndOf="@+id/btnSix" />
+            android:layout_toEndOf="@+id/btnSix"
+            android:background="@drawable/cancel_selector"
+            android:onClick="onClickClear" />
 
         <Button
             android:id="@+id/btnOk"
@@ -169,7 +206,8 @@
             android:onClick="onClickOk"
             android:layout_below="@+id/btnSix"
             android:layout_toRightOf="@+id/btnSix"
-            android:layout_toEndOf="@+id/btnSix" />
+            android:layout_toEndOf="@+id/btnSix"
+            android:background="@drawable/ok_selector" />
 
     </RelativeLayout>
 
