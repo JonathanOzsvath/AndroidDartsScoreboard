@@ -62,8 +62,8 @@ public class ScoreFragment extends Fragment {
         }
 
         if (countOk == 0) {
-            player1 = new Player("player1");
-            player2 = new Player("player2");
+            player1 = new Player("Player1");
+            player2 = new Player("Player2");
         }
 
         editText = (EditText) v.findViewById(R.id.etScore);

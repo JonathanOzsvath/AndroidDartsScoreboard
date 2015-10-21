@@ -5,7 +5,8 @@ import android.support.v4.app.FragmentActivity;
 import android.view.View;
 
 public class MainActivity extends FragmentActivity
-        implements ScoreFragment.SendPlayers,ScoreFragment.ActivityToFragment{
+        implements ScoreFragment.SendPlayers, ScoreFragment.ActivityToFragment,
+        StatisticFragment.getPlayersFromActivity{
 
     String actTag,s;
     public Player player1;
@@ -14,6 +15,7 @@ public class MainActivity extends FragmentActivity
     ScoreFragment scoreFragment;
     StatisticFragment statisticFragment;
     ScoreFragment.ActivityToFragment activityToFragment;
+    StatisticFragment.getPlayersFromActivity getPlayersFromActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,13 +38,20 @@ public class MainActivity extends FragmentActivity
                 activityToFragment = this;
             } catch (ClassCastException e) {
                 throw new ClassCastException(this.toString()
-                        + " must implement TextClicked");
+                        + " must implement sendToFragment");
             }
             activityToFragment.sendToFragment(player1,player2,countOk);
         } else {
             statisticFragment = new StatisticFragment();
             ft.replace(R.id.layoutFragment, statisticFragment, StatisticFragment.TAG);
             actTag = StatisticFragment.TAG;
+            try {
+                getPlayersFromActivity = this;
+            } catch (ClassCastException e) {
+                throw new ClassCastException(this.toString()
+                        + " must implement getPlayerFromActivity");
+            }
+            getPlayersFromActivity.getPlayerFromActivity(player1,player2,countOk);
         }
         ft.commit();
     }
@@ -114,5 +123,14 @@ public class MainActivity extends FragmentActivity
         }
 
         scoreFragment.getMessage(player1,player2,countOk);
+    }
+
+    @Override
+    public void getPlayerFromActivity(Player playerOne, Player playerTwo, int countOk) {
+        if (statisticFragment == null){
+            statisticFragment = new StatisticFragment();
+        }
+
+        statisticFragment.getPlayers(player1, player2, countOk);
     }
 }

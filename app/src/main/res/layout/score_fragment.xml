@@ -84,6 +84,7 @@
         <Button
             android:id="@+id/btnFive"
             android:text="5"
+            android:textSize="30sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -91,11 +92,13 @@
             android:onClick="onClickNumber"
             android:background="@drawable/shape_number"
             android:shadowColor="#FFFF00"
-            android:shadowRadius="10"/>
+            android:shadowRadius="10"
+            android:layout_margin="1dp"/>
 
         <Button
             android:id="@+id/btnTwo"
             android:text="2"
+            android:textSize="30sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@id/btnFive"
@@ -103,11 +106,13 @@
             android:onClick="onClickNumber"
             android:background="@drawable/shape_number"
             android:shadowColor="#FFFF00"
-            android:shadowRadius="10"/>
+            android:shadowRadius="10"
+            android:layout_margin="1dp"/>
 
         <Button
             android:id="@+id/btnEight"
             android:text="8"
+            android:textSize="30sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/btnFive"
@@ -115,11 +120,13 @@
             android:onClick="onClickNumber"
             android:background="@drawable/shape_number"
             android:shadowColor="#FFFF00"
-            android:shadowRadius="10"/>
+            android:shadowRadius="10"
+            android:layout_margin="1dp"/>
 
         <Button
             android:id="@+id/btnFour"
             android:text="4"
+            android:textSize="30sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toLeftOf="@id/btnFive"
@@ -127,11 +134,13 @@
             android:onClick="onClickNumber"
             android:background="@drawable/shape_number"
             android:shadowColor="#FFFF00"
-            android:shadowRadius="10"/>
+            android:shadowRadius="10"
+            android:layout_margin="1dp"/>
 
         <Button
             android:id="@+id/btnSix"
             android:text="6"
+            android:textSize="30sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/btnFive"
@@ -139,11 +148,13 @@
             android:onClick="onClickNumber"
             android:background="@drawable/shape_number"
             android:shadowColor="#FFFF00"
-            android:shadowRadius="10"/>
+            android:shadowRadius="10"
+            android:layout_margin="1dp"/>
 
         <Button
             android:id="@+id/btnOne"
             android:text="1"
+            android:textSize="30sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toLeftOf="@id/btnTwo"
@@ -151,11 +162,13 @@
             android:onClick="onClickNumber"
             android:background="@drawable/shape_number"
             android:shadowColor="#FFFF00"
-            android:shadowRadius="10"/>
+            android:shadowRadius="10"
+            android:layout_margin="1dp"/>
 
         <Button
             android:id="@+id/btnThree"
             android:text="3"
+            android:textSize="30sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/btnTwo"
@@ -163,11 +176,13 @@
             android:onClick="onClickNumber"
             android:background="@drawable/shape_number"
             android:shadowColor="#FFFF00"
-            android:shadowRadius="10"/>
+            android:shadowRadius="10"
+            android:layout_margin="1dp"/>
 
         <Button
             android:id="@+id/btnSeven"
             android:text="7"
+            android:textSize="30sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toLeftOf="@id/btnEight"
@@ -175,11 +190,13 @@
             android:onClick="onClickNumber"
             android:background="@drawable/shape_number"
             android:shadowColor="#FFFF00"
-            android:shadowRadius="10"/>
+            android:shadowRadius="10"
+            android:layout_margin="1dp"/>
 
         <Button
             android:id="@+id/btnNine"
             android:text="9"
+            android:textSize="30sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/btnEight"
@@ -187,11 +204,13 @@
             android:onClick="onClickNumber"
             android:background="@drawable/shape_number"
             android:shadowColor="#FFFF00"
-            android:shadowRadius="10"/>
+            android:shadowRadius="10"
+            android:layout_margin="1dp"/>
 
         <Button
             android:id="@+id/btnNull"
             android:text="0"
+            android:textSize="30sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/btnEight"
@@ -199,11 +218,13 @@
             android:onClick="onClickNumber"
             android:background="@drawable/shape_number"
             android:shadowColor="#FFFF00"
-            android:shadowRadius="10"/>
+            android:shadowRadius="10"
+            android:layout_margin="1dp"/>
 
         <Button
             android:id="@+id/btnClear"
             android:text="Clear"
+            android:textSize="25sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toLeftOf="@id/btnNull"
@@ -211,11 +232,13 @@
             android:onClick="onClickClear"
             android:background="@drawable/shape_cancel"
             android:shadowColor="#22ff0a"
-            android:shadowRadius="10"/>
+            android:shadowRadius="10"
+            android:layout_margin="1dp"/>
 
         <Button
             android:id="@+id/btnOk"
             android:text="Ok"
+            android:textSize="25sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/btnNull"
@@ -223,7 +246,8 @@
             android:onClick="onClickOk"
             android:background="@drawable/shape_ok"
             android:shadowColor="#ff0013"
-            android:shadowRadius="10"/>
+            android:shadowRadius="10"
+            android:layout_margin="1dp"/>
 
     </RelativeLayout>
 
