@@ -90,7 +90,7 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:onClick="onClickNumber"
-            android:background="@drawable/shape_number"
+            android:background="@drawable/number_selector"
             android:shadowColor="#FFFF00"
             android:shadowRadius="10"
             android:layout_margin="1dp"/>
@@ -104,7 +104,7 @@
             android:layout_above="@id/btnFive"
             android:layout_alignLeft="@id/btnFive"
             android:onClick="onClickNumber"
-            android:background="@drawable/shape_number"
+            android:background="@drawable/number_selector"
             android:shadowColor="#FFFF00"
             android:shadowRadius="10"
             android:layout_margin="1dp"/>
@@ -118,7 +118,7 @@
             android:layout_below="@id/btnFive"
             android:layout_alignLeft="@id/btnFive"
             android:onClick="onClickNumber"
-            android:background="@drawable/shape_number"
+            android:background="@drawable/number_selector"
             android:shadowColor="#FFFF00"
             android:shadowRadius="10"
             android:layout_margin="1dp"/>
@@ -132,7 +132,7 @@
             android:layout_toLeftOf="@id/btnFive"
             android:layout_alignTop="@id/btnFive"
             android:onClick="onClickNumber"
-            android:background="@drawable/shape_number"
+            android:background="@drawable/number_selector"
             android:shadowColor="#FFFF00"
             android:shadowRadius="10"
             android:layout_margin="1dp"/>
@@ -146,7 +146,7 @@
             android:layout_toRightOf="@id/btnFive"
             android:layout_alignTop="@id/btnFive"
             android:onClick="onClickNumber"
-            android:background="@drawable/shape_number"
+            android:background="@drawable/number_selector"
             android:shadowColor="#FFFF00"
             android:shadowRadius="10"
             android:layout_margin="1dp"/>
@@ -160,7 +160,7 @@
             android:layout_toLeftOf="@id/btnTwo"
             android:layout_alignTop="@id/btnTwo"
             android:onClick="onClickNumber"
-            android:background="@drawable/shape_number"
+            android:background="@drawable/number_selector"
             android:shadowColor="#FFFF00"
             android:shadowRadius="10"
             android:layout_margin="1dp"/>
@@ -174,7 +174,7 @@
             android:layout_toRightOf="@id/btnTwo"
             android:layout_alignTop="@id/btnTwo"
             android:onClick="onClickNumber"
-            android:background="@drawable/shape_number"
+            android:background="@drawable/number_selector"
             android:shadowColor="#FFFF00"
             android:shadowRadius="10"
             android:layout_margin="1dp"/>
@@ -188,7 +188,7 @@
             android:layout_toLeftOf="@id/btnEight"
             android:layout_alignTop="@id/btnEight"
             android:onClick="onClickNumber"
-            android:background="@drawable/shape_number"
+            android:background="@drawable/number_selector"
             android:shadowColor="#FFFF00"
             android:shadowRadius="10"
             android:layout_margin="1dp"/>
@@ -202,7 +202,7 @@
             android:layout_toRightOf="@id/btnEight"
             android:layout_alignTop="@id/btnEight"
             android:onClick="onClickNumber"
-            android:background="@drawable/shape_number"
+            android:background="@drawable/number_selector"
             android:shadowColor="#FFFF00"
             android:shadowRadius="10"
             android:layout_margin="1dp"/>
@@ -216,7 +216,7 @@
             android:layout_below="@id/btnEight"
             android:layout_alignLeft="@id/btnFive"
             android:onClick="onClickNumber"
-            android:background="@drawable/shape_number"
+            android:background="@drawable/number_selector"
             android:shadowColor="#FFFF00"
             android:shadowRadius="10"
             android:layout_margin="1dp"/>
@@ -230,7 +230,7 @@
             android:layout_toLeftOf="@id/btnNull"
             android:layout_alignTop="@id/btnNull"
             android:onClick="onClickClear"
-            android:background="@drawable/shape_cancel"
+            android:background="@drawable/cancel_selector"
             android:shadowColor="#22ff0a"
             android:shadowRadius="10"
             android:layout_margin="1dp"/>
@@ -244,7 +244,7 @@
             android:layout_toRightOf="@id/btnNull"
             android:layout_alignTop="@id/btnNull"
             android:onClick="onClickOk"
-            android:background="@drawable/shape_ok"
+            android:background="@drawable/ok_selector"
             android:shadowColor="#ff0013"
             android:shadowRadius="10"
             android:layout_margin="1dp"/>
