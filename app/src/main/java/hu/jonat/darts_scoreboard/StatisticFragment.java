@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.view.View;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +17,8 @@ import hu.jonat.hu.jonat.Adapter.ListViewAdapter;
  * Created by jonat on 2015. 09. 30..
  */
 public class StatisticFragment extends ListFragment {
+
+    DecimalFormat format = new DecimalFormat("0.00");
 
     public static final String TAG = "StatisticFragment";
 
@@ -70,11 +73,11 @@ public class StatisticFragment extends ListFragment {
         mItems.add(new ListViewItem("Sets",String.valueOf(player1.getSets()),String.valueOf(player2.getSets())));
         mItems.add(new ListViewItem("Legs",String.valueOf(player1.getLegs()),String.valueOf(player2.getLegs())));
         mItems.add(new ListViewItem("Darts",String.valueOf(player1.getDarts()),String.valueOf(player2.getDarts())));
-        mItems.add(new ListViewItem("Best leg",String.valueOf(player1.getBestleg()),String.valueOf(player2.getBestleg())));
-        mItems.add(new ListViewItem("Previous leg",String.valueOf(player1.getPreviousLeg()),String.valueOf(player2.getPreviousLeg())));
-        mItems.add(new ListViewItem("Current leg",String.valueOf(player1.getCurrentLeg()),String.valueOf(player2.getCurrentLeg())));
-        mItems.add(new ListViewItem("Current set",String.valueOf(player1.getCurrentSet()),String.valueOf(player2.getCurrentSet())));
-        mItems.add(new ListViewItem("Match",String.valueOf(player1.getMatch()),String.valueOf(player2.getMatch())));
+        mItems.add(new ListViewItem("Best leg",String.valueOf(String.format("%.2f",player1.getBestleg())),String.valueOf(String.format("%.2f", player2.getBestleg()))));
+        mItems.add(new ListViewItem("Previous leg",String.valueOf(String.format("%.2f",player1.getPreviousLeg())), String.valueOf(String.format("%.2f", player2.getPreviousLeg()))));
+        mItems.add(new ListViewItem("Current leg",String.valueOf(String.format("%.2f",player1.getCurrentLeg())), String.valueOf(String.format("%.2f", player2.getCurrentLeg()))));
+        mItems.add(new ListViewItem("Current set",String.valueOf(String.format("%.2f", player1.getCurrentSet())), String.valueOf(String.format("%.2f", player2.getCurrentSet()))));
+        mItems.add(new ListViewItem("Match",String.valueOf(String.format("%.2f", player1.getMatch())), String.valueOf(String.format("%.2f", player2.getMatch()))));
 
         setListAdapter(new ListViewAdapter(getActivity(), mItems));
 

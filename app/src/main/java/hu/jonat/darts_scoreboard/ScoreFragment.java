@@ -3,7 +3,9 @@ package hu.jonat.darts_scoreboard;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.speech.RecognizerIntent;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.InputType;
@@ -13,11 +15,14 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 /**
  * Created by jonat on 2015. 09. 30..
  */
 public class ScoreFragment extends Fragment {
 
+    private static final int REQUEST_CODE = 1234;
     //????
     public ScoreFragment() {
         setArguments(new Bundle());
@@ -32,6 +37,8 @@ public class ScoreFragment extends Fragment {
     EditText editText;
     TextView playerOneName, playerTwoName, playerOneScore, playerTwoScore;
     SendPlayers mCallback;
+
+    ArrayList<Integer> setArray;
 
     @Override
     public void onAttach(Activity activity) {
@@ -112,13 +119,22 @@ public class ScoreFragment extends Fragment {
                         editText.getText().clear();
                         countOk--;
                     } else {
-                        int score = player1.getScore() - Integer.parseInt(editText.getText().toString());
+                        int point = Integer.parseInt(editText.getText().toString());
+                        int score = player1.getScore() - point;
                         player1.setScore(score);
                         editText.getText().clear();
                         editText.setHint("A második játékos dob!");
                         playerOneScore.setText(String.valueOf(player1.getScore()));
                         player1.setDarts(player1.getDarts() + 3);
-                        player1.setCurrentLeg((double)(501 - player1.getScore()) / (player1.getDarts() / 3));
+                        player1.setCurrentLeg((double) (501 - player1.getScore()) / (player1.getDarts() / 3));
+                        setArray = player1.getSetArray();
+                        setArray.add(point);
+                        player1.setSetArray(setArray);
+                        player1.setCurrentSet(setSet(setArray));
+                        setArray = player1.getMatchArray();
+                        setArray.add(point);
+                        player1.setMatchArray(setArray);
+                        player1.setMatch(setMatch(setArray));
                     }
                 }
             }
@@ -133,13 +149,22 @@ public class ScoreFragment extends Fragment {
                         editText.getText().clear();
                         countOk--;
                     } else {
-                        int score = player2.getScore() - Integer.parseInt(editText.getText().toString());
+                        int point = Integer.parseInt(editText.getText().toString());
+                        int score = player2.getScore() - point;
                         player2.setScore(score);
                         editText.getText().clear();
                         editText.setHint("Az elso játékos dob!");
                         playerTwoScore.setText(String.valueOf(player2.getScore()));
                         player2.setDarts(player2.getDarts() + 3);
-                        player2.setCurrentLeg((double)(501 - player2.getScore()) / (player2.getDarts() / 3));
+                        player2.setCurrentLeg((double) (501 - player2.getScore()) / (player2.getDarts() / 3));
+                        setArray = player2.getSetArray();
+                        setArray.add(point);
+                        player2.setSetArray(setArray);
+                        player2.setCurrentSet(setSet(setArray));
+                        setArray = player2.getMatchArray();
+                        setArray.add(point);
+                        player2.setMatchArray(setArray);
+                        player2.setMatch(setMatch(setArray));
                     }
                 }
             }
@@ -180,7 +205,44 @@ public class ScoreFragment extends Fragment {
             case R.id.btnNine:
                 editText.append("9");
                 break;
+            case R.id.btnSpeech:
+                editText.requestFocus();
+                Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+                intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
+                        RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+                intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Voice recognition Demo...");
+                startActivityForResult(intent, REQUEST_CODE);
         }
+    }
+
+    public double setSet(ArrayList<Integer> setArray){
+        int tmp = 0;
+        for (Integer i : setArray){
+            tmp += i;
+        }
+        return ((double) tmp / setArray.size());
+    }
+
+    public double setMatch(ArrayList<Integer> setArray){
+        int tmp = 0;
+        for (Integer i : setArray){
+            tmp += i;
+        }
+        return ((double) tmp / setArray.size());
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_CODE && resultCode == Activity.RESULT_OK)
+        {
+            // Populate the wordsList with the String values the recognition engine thought it heard
+            ArrayList<String> matches = data.getStringArrayListExtra(
+                    RecognizerIntent.EXTRA_RESULTS);
+            for (String i : matches){
+                editText.append(i);
+            }
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     public void onClickClear(View v) {
@@ -225,6 +287,14 @@ public class ScoreFragment extends Fragment {
 
             player1.setLegs(0);
             player2.setLegs(0);
+            setArray = player1.getSetArray();
+            setArray.clear();
+            player1.setSetArray(setArray);
+            setArray = player2.getSetArray();
+            setArray.clear();
+            player2.setSetArray(setArray);
+            player1.setCurrentSet(0.00);
+            player2.setCurrentSet(0.00);
 
             showAllertMessage("Sets: " + player1.getName() + "-" + player2.getName() + ":" +
                     String.valueOf(player1.getSets()) + "-" + String.valueOf(player2.getSets()));
@@ -234,6 +304,14 @@ public class ScoreFragment extends Fragment {
 
             player1.setLegs(0);
             player2.setLegs(0);
+            setArray = player1.getSetArray();
+            setArray.clear();
+            player1.setSetArray(setArray);
+            setArray = player2.getSetArray();
+            setArray.clear();
+            player2.setSetArray(setArray);
+            player1.setCurrentSet(0.00);
+            player2.setCurrentSet(0.00);
 
             showAllertMessage("Sets: " + player1.getName() + "-" + player2.getName() + ":" +
                     String.valueOf(player1.getSets()) + "-" + String.valueOf(player2.getSets()));

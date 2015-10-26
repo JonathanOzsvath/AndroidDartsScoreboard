@@ -3,6 +3,8 @@ package hu.jonat.darts_scoreboard;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.ArrayList;
+
 /**
  * Created by jonat on 2015. 10. 14..
  */
@@ -18,6 +20,8 @@ public class Player implements Parcelable {
     private double currentLeg;
     private double currentSet;
     private double match;
+    private ArrayList setArray;
+    private ArrayList matchArray;
 
     public Player(String name) {
         this.name = name;
@@ -30,6 +34,8 @@ public class Player implements Parcelable {
         currentLeg = 0;
         currentSet = 0;
         match = 0;
+        setArray = new ArrayList();
+        matchArray = new ArrayList();
     }
 
     public String getName() {
@@ -117,6 +123,22 @@ public class Player implements Parcelable {
         this.darts = darts;
     }
 
+    public ArrayList getSetArray() {
+        return setArray;
+    }
+
+    public void setSetArray(ArrayList setArray) {
+        this.setArray = setArray;
+    }
+
+    public ArrayList getMatchArray() {
+        return matchArray;
+    }
+
+    public void setMatchArray(ArrayList matchArray) {
+        this.matchArray = matchArray;
+    }
+
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(name);
@@ -129,6 +151,8 @@ public class Player implements Parcelable {
         dest.writeDouble(currentLeg);
         dest.writeDouble(currentSet);
         dest.writeDouble(match);
+        dest.writeArray(setArray.toArray());
+        dest.writeArray(matchArray.toArray());
     }
 
     private Player(Parcel in){
@@ -142,6 +166,8 @@ public class Player implements Parcelable {
         this.currentLeg = in.readDouble();
         this.currentSet = in.readDouble();
         this.match = in.readDouble();
+        this.setArray = in.readArrayList(Integer.class.getClassLoader());
+        this.matchArray = in.readArrayList(Integer.class.getClassLoader());
     }
 
     public static final Parcelable.Creator<Player> CREATOR = new Parcelable.Creator<Player>(){
